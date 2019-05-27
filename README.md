@@ -1,12 +1,3 @@
----
-title:
-- AdSystem - RESTful API systemu reklam
-author:
-- Jarosław Kmiotek
-theme:
-- Copenhagen
-lang: pl-PL
----
 # Użyte technologie
 Ten projekt do działania wykorzystał następujące technologie:
 
@@ -17,15 +8,6 @@ Ten projekt do działania wykorzystał następujące technologie:
 + MySQL - system zarządzania bazami danych
 + Entity Framework Core - framework relacyjnego mapowania obiektów (ORM) dla platformy .NET Core
 + IP-API.com - darmowe API do geolokalizacji adresów IP
-
-# Sposób działania
-![Diagram przedstawiający drogę zapyania odbiorcy](diagram1.png)
-
-# Zapytanie BidRequest
-![Przykładowe zapytanie do serwera OpenRTB reklamodawcy](bidrequest.png)
-
-# Odpowiedź BidResponse
-![Przykładowe zapytanie do serwera OpenRTB reklamodawcy](bidresponse.png)
 
 # Możliwości systemu
 AdSystem w obecnej postaci ma następujące możliwości:
@@ -54,6 +36,3 @@ API dzieli się na sekcje, do których dostęp mają tylko poszczególne typy u�
 
 ## API reklamobiorcy
 + GET /api/publisher/embedcode - zwraca kod do umieszczenia na stronie reklamobiorcy
-
-# Kod źródłowy
-![https://github.com/djmuted/AdSystem](github.jpg)
