@@ -27,7 +27,6 @@ API dzieli się na sekcje, do których dostęp mają tylko poszczególne typy u�
 + POST /api/public/register/publisher - rejestracja konta reklamobiorcy (zwraca API key)
 + GET /api/public/ad - zwraca kod HTML reklamy będącej zwycięzcą aukcji RTB (używany przez skrypt embedcode reklamobiorcy)
 
-# RESTful API
 ## API reklamodawcy
 + POST /api/advertiser/ads - dodawanie nowej reklamy
 + GET /api/advertiser/ads - zwraca stronicowaną listę wszystkich reklam dodanych przez reklamodawcę
