@@ -20,7 +20,7 @@ namespace AdSystem.ApiObjects
         public PublisherAdvertisement(AdBidResponse resp, Publisher publisher)
         {
             this.id = resp.ad.id.ToString("N");
-            this.embed = "<a href='"+ Url.Combine(new string[] { Program.config.externalUrl, "/api/click?id=" + this.id + "&pubid=" + publisher.id + "&imp=" + resp.bidResponse.seatbid.bid.impid}) + "'><img src='" + Url.Combine(new string[] { Program.config.externalUrl, "/adimg/" + this.id + ".png" }) +"' alt='" + resp.ad.name + "' height='728' width='90'></a>";
+            this.embed = "<a href='"+ Url.Combine(new string[] { Program.config.externalUrl, "/api/click?id=" + this.id + "&pubid=" + publisher.id + "&imp=" + resp.bidResponse.seatbid.bid.impid}) + "'><img src='" + Url.Combine(new string[] { Program.config.externalUrl, resp.ad.bannerUrl }) +"' alt='" + resp.ad.name + "' height='728' width='90'></a>";
         }
     }
 }

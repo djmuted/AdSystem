@@ -38,7 +38,7 @@ namespace AdSystem.Modules
             {
                 PublisherAdvertisement embed = new PublisherAdvertisement();
                 embed.id = publisher.id.ToString();
-                embed.embed = "<script src=\"//code.jquery.com/jquery-2.0.3.min.js\" type=\"text/javascript\"></script><script>var div=document.createElement(\"div\");div.style.width=\"728px\";div.style.height=\"90px\";div.style.padding=\"0 0 0 0\";document.currentScript.parentNode.insertBefore(div, document.currentScript);$.getJSON(\"" + Flurl.Url.Combine(new string[] { Program.config.externalUrl, "/api/publisher/ad?publisherid=" + this.publisher.id.ToString() }) + "\", function(result){div.innerHTML=result.data.embed;});</script>";
+                embed.embed = "<script src=\"//code.jquery.com/jquery-2.0.3.min.js\" type=\"text/javascript\"></script><script>var div=document.createElement(\"div\");div.style.width=\"728px\";div.style.height=\"90px\";div.style.padding=\"0 0 0 0\";document.currentScript.parentNode.insertBefore(div, document.currentScript);$.getJSON(\"" + Flurl.Url.Combine(new string[] { Program.config.externalUrl, "/api/public/ad?publisherid=" + this.publisher.id.ToString() }) + "\", function(result){div.innerHTML=result.data.embed;});</script>";
                 return SuccessResponse(HttpStatusCode.OK, embed);
             });
         }

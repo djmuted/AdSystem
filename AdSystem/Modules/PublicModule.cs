@@ -9,6 +9,7 @@ using Nancy.ModelBinding;
 using System.Linq;
 using Isopoh.Cryptography.Argon2;
 using AdSystem.RTBSystem;
+using Newtonsoft.Json.Linq;
 
 namespace AdSystem.Modules
 {
@@ -69,17 +70,20 @@ namespace AdSystem.Modules
                     string password = (string)(this.Request.Form.password);
                     string apitype = (string)(args.apitype);
                     UserAccount account = null;
+                    dynamic href = new JObject();
                     if (apitype == "publisher")
                     {
                         Publisher pub = db.Publishers.Where(a => a.account.username == username).FirstOrDefault();
                         if (pub == null) return ErrorResponse(HttpStatusCode.Forbidden, "AccessViolationException", "Account with provided username does not exist.");
                         account = db.Accounts.Where(a => a.id == pub.accountId).FirstOrDefault();
+                        href.embedUrl = "/api/publisher/embedcode";
 
                     } else if (apitype == "advertiser")
                     {
                         Advertiser adv = db.Advertisers.Where(a => a.account.username == username).FirstOrDefault();
                         if (adv == null) return ErrorResponse(HttpStatusCode.Forbidden, "AccessViolationException", "Account with provided username does not exist.");
                         account = db.Accounts.Where(a => a.id == adv.accountId).FirstOrDefault();
+                        href.adsUrl = "/api/advertiser/ads";
                     } else
                     {
                         return ErrorResponse(HttpStatusCode.Forbidden, "AccessViolationException", "Wrong API type.");
@@ -88,7 +92,7 @@ namespace AdSystem.Modules
                     {
                         account.apiKey = Guid.NewGuid();
                         db.SaveChanges();
-                        var data = new LoginData(account.apiKey.ToString("N"));
+                        var data = new LoginData(account.apiKey.ToString("N"), href);
                         return SuccessResponse(HttpStatusCode.OK, data);
                     }
                     else
@@ -130,19 +134,22 @@ namespace AdSystem.Modules
                                 if(!Program.config.rtbConfig.categories.ContainsKey(cat))
                                     return ErrorResponse(HttpStatusCode.BadRequest, "FormatException", "One of the provided categories is not compatibile with the OpenRTB format.");
                             }
-                                UserAccount acc = new UserAccount();
-                                acc.username = username;
-                                acc.password = Argon2.Hash(password);
-                                acc.apiKey = Guid.NewGuid();
-                                db.SaveChanges();
-                                Publisher publisherAccount = new Publisher();
-                                publisherAccount.account = acc;
-                                publisherAccount.categories = string.Join(",", cats);
-                                publisherAccount.domain = this.Request.Form.domain;
-                                db.Publishers.Add(publisherAccount);
-                                db.SaveChanges();
-                                LoginData data = new LoginData(acc.apiKey.ToString("N"));
-                                return SuccessResponse(HttpStatusCode.Created, data);
+                            dynamic href = new JObject();
+                            href.embedUrl = "/api/publisher/embedcode";
+                            href.loginUrl = "/api/public/login/"+apitype;
+                            UserAccount acc = new UserAccount();
+                            acc.username = username;
+                            acc.password = Argon2.Hash(password);
+                            acc.apiKey = Guid.NewGuid();
+                            db.SaveChanges();
+                            Publisher publisherAccount = new Publisher();
+                            publisherAccount.account = acc;
+                            publisherAccount.categories = string.Join(",", cats);
+                            publisherAccount.domain = this.Request.Form.domain;
+                            db.Publishers.Add(publisherAccount);
+                            db.SaveChanges();
+                            LoginData data = new LoginData(acc.apiKey.ToString("N"), href);
+                            return SuccessResponse(HttpStatusCode.Created, data);
                         }
                         else if (apitype == "advertiser")
                         {
@@ -156,6 +163,9 @@ namespace AdSystem.Modules
                             }
                             else
                             {
+                                dynamic href = new JObject();
+                                href.adsUrl = "/api/advertiser/ads";
+                                href.loginUrl = "/api/public/login/" + apitype;
                                 UserAccount acc = new UserAccount();
                                 acc.username = username;
                                 acc.password = Argon2.Hash(password);
@@ -165,7 +175,7 @@ namespace AdSystem.Modules
                                 advertiserAccount.openRtbUrl = this.Request.Form.openRtbUrl;
                                 db.Advertisers.Add(advertiserAccount);
                                 db.SaveChanges();
-                                LoginData data = new LoginData(acc.apiKey.ToString("N"));
+                                LoginData data = new LoginData(acc.apiKey.ToString("N"), href);
                                 return SuccessResponse(HttpStatusCode.Created, data);
                             }
                         } else
