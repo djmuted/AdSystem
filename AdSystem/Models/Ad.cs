@@ -22,6 +22,6 @@ namespace AdSystem.Models
         [NotMapped]
         public string href { get { return "/api/advertiser/ads/" + this.id.ToString("N"); } }
         [NotMapped]
-        public string bannerUrl { get { return Url.Combine(new string[] { "/adimg/" + this.id + ".png" }); } }
+        public string bannerUrl { get { return Url.Combine(new string[] { "/adimg/" + this.id.ToString("N") + ".png" }); } }
     }
 }

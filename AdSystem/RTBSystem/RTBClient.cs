@@ -59,7 +59,7 @@ namespace AdSystem.RTBSystem
                     }
                 } catch(Exception ex)
                 {
-                    //LogManager.GetCurrentClassLogger().Error("Advertiser failed to send a valid RTB Bid response "+ex);
+                    LogManager.GetCurrentClassLogger().Error("Advertiser failed to send a valid RTB Bid response "+ex);
                 }
             });
             if (bidResponses.Count > 0) {

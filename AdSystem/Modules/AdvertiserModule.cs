@@ -47,9 +47,9 @@ namespace AdSystem.Modules
                         try
                         {
                             img = Bitmap.FromStream(postedFile.Value);
-                        } catch
+                        } catch(Exception ex)
                         {
-                            return ErrorResponse(HttpStatusCode.BadRequest, "FormatException", "The ad image format was not recognized.");
+                            return ErrorResponse(HttpStatusCode.BadRequest, "FormatException", "The ad image format was not recognized."+ex);
                         }
                         if(img.Width == 728 && img.Height == 90)
                         {
