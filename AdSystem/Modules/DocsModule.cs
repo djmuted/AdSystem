@@ -10,10 +10,10 @@ namespace AdSystem.Modules
     {
         public DocsModule(IRouteCacheProvider routeCacheProvider)
         : base(routeCacheProvider,
-          "/api-docs/",                   // where module should be located
+          "/api-docs",                   // where module should be located
           "AdSystem API documentation",  // title
           "v1.0",                        // api version
-          Program.config.externalUrl.Split("//")[1],    // host
+          "localhost:5050",              // host
           "/",                           // api base url (ie /dev, /api)
           "http")                        // schemes
         {
