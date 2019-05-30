@@ -37,7 +37,6 @@ namespace AdSystem.RTBSystem
             
             string bidRequestJson = JsonConvert.SerializeObject(bidRequest);
             Dictionary<Advertiser, BidResponse> bidResponses = new Dictionary<Advertiser, BidResponse>();
-            Console.WriteLine("REQUEST " + bidRequestJson);
 
             Parallel.ForEach(db.Advertisers, (advertiser) =>
             {
@@ -53,13 +52,12 @@ namespace AdSystem.RTBSystem
                     {
                         lock (bidResponses)
                         {
-                            Console.WriteLine("RESPONSE " + responsejson);
                             bidResponses.Add(advertiser, bidResponse);
                         }
                     }
                 } catch(Exception ex)
                 {
-                    LogManager.GetCurrentClassLogger().Error("Advertiser failed to send a valid RTB Bid response "+ex);
+                    //LogManager.GetCurrentClassLogger().Error("Advertiser failed to send a valid RTB Bid response "+ex);
                 }
             });
             if (bidResponses.Count > 0) {

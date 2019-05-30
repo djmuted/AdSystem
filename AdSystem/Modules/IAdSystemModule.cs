@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace AdSystem.Modules
 {
-    public class IAdSystemModule : NancyModule
+    public abstract class IAdSystemModule : NancyModule
     {
         protected Response Serialize<T>(T obj)
         {
@@ -53,13 +53,13 @@ namespace AdSystem.Modules
             return nancyResponse;
         }
         protected AdSystemDbContext db = new AdSystemDbContext();
-        public IAdSystemModule()
+        public IAdSystemModule(string _path) : base(_path)
         {
             After += ctx =>
             {
                 ctx.Response.WithHeader("Access-Control-Allow-Origin", "*")
-                                            .WithHeader("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT")
-                                            .WithHeader("Access-Control-Allow-Headers", "Accept, Origin, Content-type");
+                                            .WithHeader("Access-Control-Allow-Methods", "*")
+                                            .WithHeader("Access-Control-Allow-Headers", "*");
             };
         }
     }

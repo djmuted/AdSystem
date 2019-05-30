@@ -18,7 +18,7 @@ namespace AdSystem.Modules
     public class AdvertiserModule : IAdSystemModule
     {
         private Advertiser advertiser;
-        public AdvertiserModule(IAppConfiguration appConfig)
+        public AdvertiserModule() : base ("/api/advertiser")
         {
             Before += ctx => {
                 Guid apiKey;
@@ -32,7 +32,7 @@ namespace AdSystem.Modules
                 }
                 return null;
             };
-            Post("/api/advertiser/ads", _ => {
+            Post("/ads", _ => {
                 var postedFile = Request.Files.FirstOrDefault();
                 if (postedFile == null)
                 {
@@ -72,8 +72,8 @@ namespace AdSystem.Modules
                 }
                 return ErrorResponse(HttpStatusCode.BadRequest, "FormatException", "The ad name was not provided.");
 
-            });
-            Get("/api/advertiser/ads", _ => {
+            }, name: "AddAd");
+            Get("/ads", _ => {
                 int page;
                 int pageSize;
                 if (!int.TryParse(this.Request.Query["page"], out page))
@@ -95,8 +95,8 @@ namespace AdSystem.Modules
                 }
                 var ret = new response(Pages.GetPaged<Ad>(db.Ads.Where(a => a.advertiser.id == advertiser.id), page, pageSize));
                 return Serialize(ret);
-            });
-            Get("/api/advertiser/ads/{guid}", _ => {
+            }, name: "GetAds");
+            Get("/ads/{guid}", _ => {
                 Guid guid;
                 if (!Guid.TryParse(_.guid, out guid))
                 {
@@ -111,8 +111,8 @@ namespace AdSystem.Modules
                 {
                     return ErrorResponse(HttpStatusCode.NotFound, "ObjectNotFoundException", "Ad with specified id was not found.");
                 }
-            });
-            Delete("/api/advertiser/ads/{guid}", _ => {
+            }, name: "GetAd");
+            Delete("/ads/{guid}", _ => {
                 Guid guid;
                 if (!Guid.TryParse(_.guid, out guid))
                 {
@@ -129,7 +129,7 @@ namespace AdSystem.Modules
                 {
                     return ErrorResponse(HttpStatusCode.NotFound, "ObjectNotFoundException", "Ad with specified id was not found.");
                 }
-            });
+            }, name: "DeleteAd");
         }
     }
 }

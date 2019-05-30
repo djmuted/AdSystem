@@ -1,5 +1,7 @@
 ﻿using System;
 using Nancy;
+using Nancy.Bootstrapper;
+using Nancy.Conventions;
 using Nancy.TinyIoc;
 
 namespace AdSystem
@@ -12,6 +14,20 @@ namespace AdSystem
         {
         }
 
+        protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
+        {
+            base.ApplicationStartup(container, pipelines);
+        }
+
+        protected override void ConfigureConventions(NancyConventions nancyConventions)
+        {
+            base.ConfigureConventions(nancyConventions);
+
+            nancyConventions.StaticContentsConventions.Add(
+                StaticContentConventionBuilder.AddDirectory("swagger-ui", @"swagger-ui")
+            );
+        }
+
         public Bootstrapper(IAppConfiguration appConfig)
         {
             this.appConfig = appConfig;
@@ -22,5 +38,7 @@ namespace AdSystem
             base.ConfigureApplicationContainer(container);
             container.Register<IAppConfiguration>(appConfig);
         }
+
+
     }
 }

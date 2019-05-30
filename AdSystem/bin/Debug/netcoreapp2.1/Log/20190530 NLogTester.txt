@@ -1,0 +1,49 @@
+2019-05-30 20:26:34.8367|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:27:44.0021|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:29:25.6731|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:31:05.2979|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:33:30.5050|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:34:19.8393|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:43:18.8468|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:45:19.7176|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:48:07.9579|INFO|AdSystem.Program|AdSystem started
+2019-05-30 20:59:42.5058|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:02:56.5124|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:04:51.7524|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:10:53.9390|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:11:50.8972|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:13:31.4890|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:17:43.1433|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:19:30.7287|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:26:03.8020|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:30:01.1738|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:40:28.7386|INFO|AdSystem.Program|AdSystem started
+2019-05-30 21:45:40.4183|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:07:28.0927|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:09:05.1600|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:32:04.0287|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:36:11.9654|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:37:29.4364|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:39:08.6684|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:40:05.4089|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:42:32.6443|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:43:24.7148|INFO|AdSystem.Program|AdSystem started
+2019-05-30 22:45:10.9807|ERROR|AdSystem.RTBSystem.RTBClient|Advertiser failed to send a valid RTB Bid response System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
+   at System.Net.HttpWebRequest.GetResponse()
+   at System.Net.WebClient.GetWebResponse(WebRequest request)
+   at System.Net.WebClient.DownloadBits(WebRequest request, Stream writeStream)
+   at System.Net.WebClient.UploadBits(WebRequest request, Stream readStream, Byte[] buffer, Int32 chunkSize, Byte[] header, Byte[] footer)
+   at System.Net.WebClient.UploadDataInternal(Uri address, String method, Byte[] data, WebRequest& request)
+   at System.Net.WebClient.UploadString(Uri address, String method, String data)
+   at System.Net.WebClient.UploadString(String address, String data)
+   at AdSystem.RTBSystem.RTBClient.<>c__DisplayClass6_0.<GetAdBidResponse>b__0(Advertiser advertiser) in G:\adrc\AdSystem\AdSystem\RTBSystem\RTBClient.cs:line 49
+2019-05-30 22:49:36.4401|ERROR|AdSystem.RTBSystem.RTBClient|Advertiser failed to send a valid RTB Bid response System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
+   at System.Net.HttpWebRequest.GetResponse()
+   at System.Net.WebClient.GetWebResponse(WebRequest request)
+   at System.Net.WebClient.DownloadBits(WebRequest request, Stream writeStream)
+   at System.Net.WebClient.UploadBits(WebRequest request, Stream readStream, Byte[] buffer, Int32 chunkSize, Byte[] header, Byte[] footer)
+   at System.Net.WebClient.UploadDataInternal(Uri address, String method, Byte[] data, WebRequest& request)
+   at System.Net.WebClient.UploadString(Uri address, String method, String data)
+   at System.Net.WebClient.UploadString(String address, String data)
+   at AdSystem.RTBSystem.RTBClient.<>c__DisplayClass6_0.<GetAdBidResponse>b__0(Advertiser advertiser) in G:\adrc\AdSystem\AdSystem\RTBSystem\RTBClient.cs:line 49
+2019-05-30 22:52:20.5488|INFO|AdSystem.Program|AdSystem started
