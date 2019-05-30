@@ -58,7 +58,7 @@ namespace AdSystem.Modules
                             db.Ads.Add(ad);
                             db.SaveChanges();
 
-                            img.Save("adimg\\" + ad.id.ToString("N")+".png");
+                            img.Save(Path.Combine("adimg", ad.id.ToString("N")+".png"));
 
                             return SuccessResponse(HttpStatusCode.Created, ad);
                         } else
