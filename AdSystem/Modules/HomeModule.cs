@@ -13,7 +13,7 @@ namespace AdSystem.Modules
     {
         public HomeModule() : base ("/")
         {
-            Get("/", args => Response.AsRedirect($"/swagger-ui/index.html?url="+Flurl.Url.Combine(Program.config.serverUrl, "/api-docs")), null, "Docs");
+            Get("/docs", args => Response.AsRedirect($"/swagger-ui/index.html?url="+Flurl.Url.Combine(Program.config.externalUrl, "/api-docs")), null, "Docs");
 
         }
     }
